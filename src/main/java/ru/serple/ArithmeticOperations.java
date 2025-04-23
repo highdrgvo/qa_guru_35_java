@@ -51,8 +51,8 @@ public class ArithmeticOperations {
 
         // Та же операция с long
 
-        long longNumber1 = 1000000;
-        long longNumber2 = 70000000;
+        long longNumber1 = 9999999999999L;
+        long longNumber2 = 9223372036854775807L;
         long longMultiplication = longNumber1 * longNumber2;
         System.out.println(longMultiplication);
 
