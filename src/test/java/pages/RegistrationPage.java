@@ -13,7 +13,6 @@ public class RegistrationPage {
 
 
     public void openPage() {
-
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('#fixedban').remove()");

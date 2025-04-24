@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 
 import static com.codeborne.selenide.Condition.appear;
@@ -8,16 +9,17 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationTests {
+public class RegistrationWithPageObjectsTests extends TestBase {
 
-    public class RegistrationTests extends TestBase {
+    RegistrationPage registrationPage = new RegistrationPage();
 
         @Test
         void successfulRegistrationTest() {
-            open("/automation-practice-form");
-            $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-            executeJavaScript("$('#fixedban').remove()");
-            executeJavaScript("$('footer').remove()");
+
+            registrationPage.openPage();
+
+            registrationPage.setFirstName("Alex");
+            registrationPage.setLastName("Egorov");
 
             $("#firstName").setValue("Alex");
             $("#lastName").setValue("Egorov");
