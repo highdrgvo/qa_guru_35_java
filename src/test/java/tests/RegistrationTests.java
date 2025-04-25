@@ -1,25 +1,20 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
-
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationWithPageObjectsTests extends TestBase {
-
-    RegistrationPage registrationPage = new RegistrationPage();
+public class RegistrationTests extends TestBase {
 
     @Test
     void successfulRegistrationTest() {
-
-        registrationPage.openPage();
-
-        registrationPage.setFirstName("Alex");
-        registrationPage.setLastName("Egorov");
+        open("/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
         $("#firstName").setValue("Alex");
         $("#lastName").setValue("Egorov");
@@ -46,5 +41,3 @@ public class RegistrationWithPageObjectsTests extends TestBase {
                 text("alex@egorov.com"), text("1234567890"));
     }
 }
-}
-
