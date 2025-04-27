@@ -60,7 +60,27 @@ public class AutomationPracticeFormTests {
         $("[class=table-responsive]").$(byText("Address")).parent().shouldHave(text("City centre 1"));
         $("[class=table-responsive]").$(byText("State and City")).parent().shouldHave(text("NCR Delhi"));
 
-        sleep(5000);
+    }
+
+    @Test
+    void minimumNumberOfDataIntheField() {
+
+        open("/automation-practice-form");
+        executeJavaScript("$('footer').remove();");
+        executeJavaScript("$('#fixedban').remove();");
+
+        $("[id=userNumber-wrapper]").$("[minlength]").shouldHave(attribute("minlength", "10"));
+    }
+
+    @Test
+    void inputElevenDigitsInMobileField() {
+
+        open("/automation-practice-form");
+        executeJavaScript("$('footer').remove();");
+        executeJavaScript("$('#fixedban').remove();");
+
+        // Проверка, что при добавлении 11 цифр в поле сохраняется только 10
+        $("#userNumber").setValue("99933322111").shouldHave(value("9993332211"));
 
     }
 

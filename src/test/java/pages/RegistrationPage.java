@@ -4,18 +4,27 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
 
     private SelenideElement firstNameInput = $("#firstName"), // Элементы страницы
     lastNameInput = $("#lastName"),
-    userEmailInput = $("#userEmail"),
+    userEmailInput = $(by("id", "userEmail")),
     genderWrapper = $("#genderWrapper"),
     userNumberInput = $("#userNumber"),
-    calendarInput = $("#dateOfBirthInput");
+    calendarInput = $("#dateOfBirthInput"),
+    subjectInput = $("#subjectsInput"),
+    hobbieInput = $("#hobbiesWrapper"),
+    pictureAdd =  $("#uploadPicture"),
+    currentAddressInput = $("#currentAddress"),
+    stateAdd =  $("#react-select-3-input"),
+    cityAdd =  $("#react-select-4-input"),
+    submitClick = $("#submit");
+
+
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
@@ -63,6 +72,46 @@ public class RegistrationPage {
         calendarComponent.setDate(day, month, year);
 
         return this;
+    }
+
+    public RegistrationPage setSubject(String value) {
+        subjectInput.setValue(value).pressEnter();
+
+        return this;
+    }
+
+    public RegistrationPage setHobbie(String value) {
+        hobbieInput.$(byText(value)).click();
+
+        return this;
+    }
+
+    public RegistrationPage uploadPicture(String value) {
+        pictureAdd.uploadFromClasspath(value);
+
+        return this;
+    }
+
+    public RegistrationPage setCurrentAddress(String value) {
+        currentAddressInput.setValue(value);
+
+        return this;
+    }
+
+    public RegistrationPage setState(String value) {
+        stateAdd.setValue(value).pressEnter();
+
+        return this;
+    }
+
+    public RegistrationPage setCity(String value) {
+        cityAdd.setValue(value).pressEnter();
+
+        return this;
+    }
+
+    public void clickSubmit() {
+        submitClick.click(); // возможно что-то не будет работать из-за этого. Тут void добавил.
     }
 
 }

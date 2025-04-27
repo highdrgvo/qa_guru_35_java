@@ -1,6 +1,8 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.RegistrationPage;
 
 
@@ -11,6 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationWithPageObjectsTests extends TestBase {
 
+    private static final Logger log = LoggerFactory.getLogger(RegistrationWithPageObjectsTests.class);
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
@@ -22,7 +25,16 @@ public class RegistrationWithPageObjectsTests extends TestBase {
                 .setEmail("alex@egorov.com")
                 .setGender("Other")
                 .setUserNumber("1234567890")
-                .setDateOfBirth("30", "July", "2008");
+                .setDateOfBirth("30", "July", "2008")
+                .setSubject("Chemistry")
+                .setHobbie("")
+                .uploadPicture("")
+                .setCurrentAddress("")
+                .setState("")
+                .setCity("")
+                .clickSubmit();
+
+
 
 
         $("#firstName").setValue("Alex");
