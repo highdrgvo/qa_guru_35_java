@@ -10,10 +10,10 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
 
-    private SelenideElement firstNameInput = $("#firstName"),
-    lastNameInput = $("#firstName"),
+    private SelenideElement firstNameInput = $("#firstName"), // Элементы страницы
+    lastNameInput = $("#lastName"),
     userEmailInput = $("#userEmail"),
-    genderWrapper = $("#genterWrapper"),
+    genderWrapper = $("#genderWrapper"),
     userNumberInput = $("#userNumber"),
     calendarInput = $("#dateOfBirthInput");
 

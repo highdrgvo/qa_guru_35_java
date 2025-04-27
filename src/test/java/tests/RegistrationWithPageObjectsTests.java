@@ -50,6 +50,6 @@ public class RegistrationWithPageObjectsTests extends TestBase {
                 text("alex@egorov.com"), text("1234567890"));
     }
 }
-}
+
 
 
