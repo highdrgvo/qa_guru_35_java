@@ -134,7 +134,6 @@ public class RegistrationPage {
     public RegistrationPage setMoreThan10DigitsMobilePhone(String value) {
         userNumberInput.setValue(value);
         String expectedValue = value.length() > 10 ? value.substring(0, 10) : value;
-        // userNumberInput.shouldHave(value(expectedValue));
         System.out.println(expectedValue);
 
         return this;
