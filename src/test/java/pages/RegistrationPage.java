@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.components.CalendarComponent;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -28,7 +28,6 @@ public class RegistrationPage {
     submitClick = $("#submit"),
 
     checkResultTotalForm = $("[class=table-responsive]");
-
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
@@ -124,7 +123,21 @@ public class RegistrationPage {
         checkResultTotalForm.$(byText(key)).parent().shouldHave(text(value));
 
         return this;
+    }
 
+    public RegistrationPage checkMinDigitsFieldMobile(String value) {
+        userNumberInput.shouldHave(attribute("minlength", value));
+
+        return this;
+    }
+
+    public RegistrationPage setMoreThan10DigitsMobilePhone(String value) {
+        userNumberInput.setValue(value);
+        String expectedValue = value.length() > 10 ? value.substring(0, 10) : value;
+        // userNumberInput.shouldHave(value(expectedValue));
+        System.out.println(expectedValue);
+
+        return this;
     }
 
 }
