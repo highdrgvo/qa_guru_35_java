@@ -13,6 +13,8 @@ public class AutomationPracticeFormWithPOTests extends TestBase {
     @Test
     void successfulRegistrationTest() {
 
+        // Проверка успешности заполнения регистрационной формы студента
+
         registrationPage.openPage()
                 .setFirstName("Serg")
                 .setLastName("Plechko")
@@ -43,7 +45,7 @@ public class AutomationPracticeFormWithPOTests extends TestBase {
     @Test
     void minimumNumberOfDataIntheFieldTest() {
 
-        // В поле Mobile минимальное кол-во цифр = 10
+        // Проверка минимального кол-ва символов в поле Mobile
 
         registrationPage.openPage()
                 .checkMinDigitsFieldMobile("10");
@@ -52,7 +54,7 @@ public class AutomationPracticeFormWithPOTests extends TestBase {
     @Test
     void inputElevenDigitsInMobileField() {
 
-        // Ввод более 10 цифр в поле Mobile
+        // Негативная проверка. Ввод более 10 цифр в поле Mobile
 
         registrationPage.openPage()
                 .setMoreThan10DigitsMobilePhone("99955544433222");
