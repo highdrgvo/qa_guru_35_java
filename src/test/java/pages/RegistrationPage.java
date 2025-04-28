@@ -1,8 +1,6 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.*;
@@ -114,7 +112,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage clickSubmit() {
-        submitClick.click();// возможно что-то не будет работать из-за этого. Тут void добавил.
+        submitClick.click();
 
         return this;
     }

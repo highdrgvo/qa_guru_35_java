@@ -5,10 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.RegistrationPage;
 
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.value;
-import static com.codeborne.selenide.Selenide.*;
-
 public class AutomationPracticeFormWithPOTests extends TestBase {
 
     private static final Logger log = LoggerFactory.getLogger(AutomationPracticeFormWithPOTests.class);
@@ -42,11 +38,6 @@ public class AutomationPracticeFormWithPOTests extends TestBase {
                 .checkResult("Picture", "priroda_kartinki_foto_03.jpg")
                 .checkResult("Address", "ul. New Delhi 4")
                 .checkResult("State and City", "Rajasthan Jaipur");
-
-
-        sleep(5000);
-
-
     }
 
     @Test
