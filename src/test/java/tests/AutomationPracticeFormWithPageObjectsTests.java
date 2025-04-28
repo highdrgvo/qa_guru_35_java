@@ -5,9 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.RegistrationPage;
 
-public class AutomationPracticeFormWithPOTests extends TestBase {
+public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
-    private static final Logger log = LoggerFactory.getLogger(AutomationPracticeFormWithPOTests.class);
+    private static final Logger log = LoggerFactory.getLogger(AutomationPracticeFormWithPageObjectsTests.class);
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
