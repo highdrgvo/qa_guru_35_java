@@ -11,5 +11,4 @@ public class CalendarComponent {
         $(".react-datepicker__year-select").selectOption("2001");
         $$("div.react-datepicker__day").findBy(text("1")).click();
     }
-
 }
