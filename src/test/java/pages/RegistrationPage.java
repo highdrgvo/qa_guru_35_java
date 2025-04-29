@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.ResultRegistrationFormComponent;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.by;
@@ -22,15 +23,18 @@ public class RegistrationPage {
     currentAddressInput = $("#currentAddress"),
     stateAdd =  $("#react-select-3-input"),
     cityAdd =  $("#react-select-4-input"),
-    submitClick = $("#submit"),
-
-    checkResultTotalForm = $("[class=table-responsive]");
+    submitClick = $("#submit");
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+
+        return this;
+    }
+
+    public RegistrationPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
@@ -112,12 +116,6 @@ public class RegistrationPage {
 
     public RegistrationPage clickSubmit() {
         submitClick.click();
-
-        return this;
-    }
-
-    public RegistrationPage checkResult(String key, String value) {
-        checkResultTotalForm.$(byText(key)).parent().shouldHave(text(value));
 
         return this;
     }

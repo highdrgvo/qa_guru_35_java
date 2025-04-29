@@ -4,11 +4,13 @@ import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.RegistrationPage;
+import pages.components.ResultRegistrationFormComponent;
 
 public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
     private static final Logger log = LoggerFactory.getLogger(AutomationPracticeFormWithPageObjectsTests.class);
     RegistrationPage registrationPage = new RegistrationPage();
+    ResultRegistrationFormComponent resultRegistrationFormComponent = new ResultRegistrationFormComponent();
 
     @Test
     void successfulRegistrationTest() {
@@ -16,25 +18,26 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
         // Проверка успешности заполнения регистрационной формы студента
 
         registrationPage.openPage()
+                .removeBanner()
                 .setFirstName("Serg")
                 .setLastName("Plechko")
                 .setEmail("serg@plechko.com")
                 .setGender("Male")
                 .setUserNumber("5550009995")
-                .setDateOfBirth("1", "July", "1997")
+                .setDateOfBirth("30", "June", "2004")
                 .setSubject("Chemistry")
                 .setHobbie("Sports")
                 .uploadPicture("priroda_kartinki_foto_03.jpg")
                 .setCurrentAddress("ul. New Delhi 4")
                 .setState("Rajasthan")
                 .setCity("Jaipur")
-                .clickSubmit()
+                .clickSubmit();
 
-                .checkResult("Student Name", "Serg Plechko")
+        resultRegistrationFormComponent.checkResult("Student Name", "Serg Plechko")
                 .checkResult("Student Email", "serg@plechko.com")
                 .checkResult("Gender", "Male")
                 .checkResult("Mobile", "5550009995")
-                .checkResult("Date of Birth", "01 July,1997")
+                .checkResult("Date of Birth", "30 June,2004")
                 .checkResult("Subjects", "Chemistry")
                 .checkResult("Hobbies", "Sports")
                 .checkResult("Picture", "priroda_kartinki_foto_03.jpg")
