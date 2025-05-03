@@ -12,16 +12,19 @@ import java.util.concurrent.TimeUnit;
 
 public class RandomFakerUtils {
 
-    static Faker faker = new Faker(new Locale("ru"));
+    static Faker faker = new Faker(new Locale("en-GB"));
 
     public String firstName = faker.name().firstName(), // Emory
                     lastName = faker.name().lastName(), // Barton
                     userEmail = faker.internet().emailAddress(),
                     userGender = getRandomGender(),
-                    userNumber = faker.phoneNumber().cellPhone(),
+                    userNumber =  getRandomPhone(),
                     monthOfBirth = getRandomMonthOfBirth(),
                     userDayOfBirth = getRandomDayOfBirth(),
-                    userYearOfBirth = getRandomYearOfBirth();
+                    userYearOfBirth = getRandomYearOfBirth(),
+                    userSubject = getRandomSubject(),
+                    userHobbies = getRandomHobbies(),
+                    userPicture = getRandomPicture();
 
     public String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 
@@ -46,14 +49,13 @@ public class RandomFakerUtils {
         return array[index];
     }
 
-    // Рандомный день месяца
+    // Рандомный телефон
+    public static String getRandomPhone() {
 
-//    public static String getRandomDayOfBirth() {
-//
-//        String[] days = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"};
-//
-//        return  getRandomItemFromArray(days);
-//    }
+        return String.format("%s %s %s %s", getRandomInt(111, 999),
+                getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
+        // %s это getRandomInt(111, 999), (%s) getRandomInt(111, 999) и т д
+    }
 
     // Рандомный день
 
@@ -61,9 +63,8 @@ public class RandomFakerUtils {
 
         int dayOfBirth = faker.number().numberBetween(1, 28);
 
-        return String.valueOf(dayOfBirth);
+        return String.format("%02d", dayOfBirth);
     }
-
 
     // Рандомный месяц
 
@@ -78,11 +79,41 @@ public class RandomFakerUtils {
 
     public static String getRandomYearOfBirth() {
 
-        int yearOfBirth = faker.number().numberBetween(1980, 2007);
+        int yearOfBirth = (faker.number().numberBetween(1990, 2010));
 
         return String.valueOf(yearOfBirth);
     }
 
+    // Рандомный предмет
+
+    public static String getRandomSubject() {
+
+        String[] subject = {"English", "Hindi", "Maths", "Arts", "Accounting", "Commerce", "Economics", "Computer Science", "History", "Civics"};
+
+        return  getRandomItemFromArray(subject);
+    }
+
+    // Рандомное хобби
+
+    public static String getRandomHobbies() {
+
+        String[] hobbies = {"Sports", "Reading", "Music"};
+
+        return  getRandomItemFromArray(hobbies);
+    }
+
+    // Рандомная картинка
+
+    public static String getRandomPicture() {
+
+        String[] picture = {"priroda_kartinki_foto_03.jpg", "summer.jpeg", "winter.jpeg"};
+
+        return  getRandomItemFromArray(picture);
+    }
+
 
 }
+
+    // Рандомный предмет
+
 

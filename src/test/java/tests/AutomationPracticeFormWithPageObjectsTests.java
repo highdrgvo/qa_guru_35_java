@@ -29,13 +29,15 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
                 .setGender(randomFaker.userGender)
                 .setUserNumber(randomFaker.userNumber)
                 .setDateOfBirth(randomFaker.userDayOfBirth, randomFaker.monthOfBirth, randomFaker.userYearOfBirth)
-                .setSubject("Chemistry")
-                .setHobbie("Sports")
-                .uploadPicture("priroda_kartinki_foto_03.jpg")
+                .setSubject(randomFaker.userSubject)
+                .setHobbie(randomFaker.userHobbies)
+                .uploadPicture(randomFaker.userPicture)
                 .setCurrentAddress("ul. New Delhi 4")
                 .setState("Rajasthan")
                 .setCity("Jaipur")
                 .clickSubmit();
+
+        sleep(5000);
 
 
         resultRegistrationFormComponent.checkResult("Student Name", "Serg Plechko")
