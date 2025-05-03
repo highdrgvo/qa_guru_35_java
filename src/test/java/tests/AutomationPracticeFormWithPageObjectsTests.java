@@ -5,12 +5,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.RegistrationPage;
 import pages.components.ResultRegistrationFormComponent;
+import utils.RandomFakerUtils;
 
 public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
     private static final Logger log = LoggerFactory.getLogger(AutomationPracticeFormWithPageObjectsTests.class);
     RegistrationPage registrationPage = new RegistrationPage();
     ResultRegistrationFormComponent resultRegistrationFormComponent = new ResultRegistrationFormComponent();
+    RandomFakerUtils randomFaker = new RandomFakerUtils();
 
     @Test
     void successfulRegistrationTest() {
@@ -19,9 +21,9 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
         registrationPage.openPage()
                 .removeBanner()
-                .setFirstName("Serg")
-                .setLastName("Plechko")
-                .setEmail("serg@plechko.com")
+                .setFirstName(randomFaker.firstName)
+                .setLastName(randomFaker.lastName)
+                .setEmail(randomFaker.userEmail)
                 .setGender("Male")
                 .setUserNumber("5550009995")
                 .setDateOfBirth("30", "June", "2004")

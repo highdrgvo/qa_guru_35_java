@@ -8,8 +8,14 @@ public class RandomFakerUtils {
 
     Faker faker = new Faker(new Locale("ru"));
 
-    String firstName = faker.name().firstName(); // Emory
-    String lastName = faker.name().lastName(); // Barton
-    String userEmail = faker.internet().emailAddress();
-    String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
+    public String firstName = faker.name().firstName(); // Emory
+    public String lastName = faker.name().lastName(); // Barton
+    public String userEmail = faker.internet().emailAddress();
+    public String userGender = faker.;
+    public String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
+
+
+
+
 }
+
