@@ -32,7 +32,7 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
                 .setSubject(randomFaker.userSubject)
                 .setHobbie(randomFaker.userHobbies)
                 .uploadPicture(randomFaker.userPicture)
-                .setCurrentAddress("ul. New Delhi 4")
+                .setCurrentAddress(randomFaker.streetAddress)
                 .setState("Rajasthan")
                 .setCity("Jaipur")
                 .clickSubmit();

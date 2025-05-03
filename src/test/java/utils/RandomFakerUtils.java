@@ -24,9 +24,8 @@ public class RandomFakerUtils {
                     userYearOfBirth = getRandomYearOfBirth(),
                     userSubject = getRandomSubject(),
                     userHobbies = getRandomHobbies(),
-                    userPicture = getRandomPicture();
-
-    public String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
+                    userPicture = getRandomPicture(),
+                    streetAddress = faker.address().streetAddress();
 
 
     // Рандомный пол
@@ -106,7 +105,7 @@ public class RandomFakerUtils {
 
     public static String getRandomPicture() {
 
-        String[] picture = {"priroda_kartinki_foto_03.jpg", "summer.jpeg", "winter.jpeg"};
+        String[] picture = {"priroda_kartinki_foto_03.jpg", "1119-white-flower-2_1579261223.jpg"};
 
         return  getRandomItemFromArray(picture);
     }
@@ -114,6 +113,5 @@ public class RandomFakerUtils {
 
 }
 
-    // Рандомный предмет
 
 
