@@ -9,18 +9,23 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static tests.TestData.lastName;
+import static tests.TestData.userEmail;
+import static utils.RandomUtils.*;
 
 public class RegistrationWithRandomUtilsTests extends TestBase {
 
     @Test
     void successfulRegistrationTest() {
 
-        Faker faker = new Faker(new Locale("ru"));
+        String firstName = getRandomString(10);
+        String lastName = getRandomString(10);
+        String userEmail = getRandomEmail();
+        String streetAddress = getRandomAddress();
 
-        String firstName = faker.name().firstName(); // Emory
-        String lastName = faker.name().lastName(); // Barton
-        String userEmail = faker.internet().emailAddress();
-        String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
+//        String lastName = faker.name().lastName(); // Barton
+//        String userEmail = faker.internet().emailAddress();
+//        String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 
 
         open("/automation-practice-form");
