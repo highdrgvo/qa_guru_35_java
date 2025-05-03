@@ -7,6 +7,8 @@ import pages.RegistrationPage;
 import pages.components.ResultRegistrationFormComponent;
 import utils.RandomFakerUtils;
 
+import static com.codeborne.selenide.Selenide.sleep;
+
 public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
     private static final Logger log = LoggerFactory.getLogger(AutomationPracticeFormWithPageObjectsTests.class);
@@ -24,9 +26,9 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
                 .setFirstName(randomFaker.firstName)
                 .setLastName(randomFaker.lastName)
                 .setEmail(randomFaker.userEmail)
-                .setGender("Male")
-                .setUserNumber("5550009995")
-                .setDateOfBirth("30", "June", "2004")
+                .setGender(randomFaker.userGender)
+                .setUserNumber(randomFaker.userNumber)
+                .setDateOfBirth(randomFaker.userDayOfBirth, randomFaker.monthOfBirth, randomFaker.userYearOfBirth)
                 .setSubject("Chemistry")
                 .setHobbie("Sports")
                 .uploadPicture("priroda_kartinki_foto_03.jpg")
@@ -34,6 +36,7 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
                 .setState("Rajasthan")
                 .setCity("Jaipur")
                 .clickSubmit();
+
 
         resultRegistrationFormComponent.checkResult("Student Name", "Serg Plechko")
                 .checkResult("Student Email", "serg@plechko.com")
@@ -45,6 +48,8 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
                 .checkResult("Picture", "priroda_kartinki_foto_03.jpg")
                 .checkResult("Address", "ul. New Delhi 4")
                 .checkResult("State and City", "Rajasthan Jaipur");
+
+        sleep(5000);
     }
 
     @Test
