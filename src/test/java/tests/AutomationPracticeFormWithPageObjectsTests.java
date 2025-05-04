@@ -1,18 +1,34 @@
 package tests;
 
 import org.junit.jupiter.api.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pages.RegistrationPage;
 import pages.components.ResultRegistrationFormComponent;
 import utils.RandomFakerUtils;
 
+import static utils.RandomFakerUtils.*;
+
 public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
-    private static final Logger log = LoggerFactory.getLogger(AutomationPracticeFormWithPageObjectsTests.class);
+    String firstName = getRandomFirstName(),
+            lastName = getRandomLastName(),
+            email = getRandomEmail(),
+            gender = getRandomGender(),
+            phoneNumber = getRandomPhone(),
+            dayOfBirth = getRandomDayOfBirth(),
+            monthOfBirth = getRandomMonthOfBirth(),
+            yearOfBirth = getRandomYearOfBirth(),
+            subject = getRandomSubject(),
+            hobbies = getRandomHobbies(),
+            picture = getRandomPicture(),
+            address = getRandomAddress(),
+            state = getRandomState(),
+            city = getRandomCity(state);
+
+
     RegistrationPage registrationPage = new RegistrationPage();
     ResultRegistrationFormComponent resultRegistrationFormComponent = new ResultRegistrationFormComponent();
-    RandomFakerUtils randomFaker = new RandomFakerUtils();
+
+
 
     @Test
     void successfulRegistrationTest() {
@@ -21,30 +37,30 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
         registrationPage.openPage()
                 .removeBanner()
-                .setFirstName(randomFaker.firstName)
-                .setLastName(randomFaker.lastName)
-                .setEmail(randomFaker.userEmail)
-                .setGender(randomFaker.userGender)
-                .setUserNumber(randomFaker.userNumber)
-                .setDateOfBirth(randomFaker.userDayOfBirth, randomFaker.monthOfBirth, randomFaker.userYearOfBirth)
-                .setSubject(randomFaker.userSubject)
-                .setHobbie(randomFaker.userHobbies)
-                .uploadPicture(randomFaker.userPicture)
-                .setCurrentAddress(randomFaker.streetAddress)
-                .setState(randomFaker.state)
-                .setCity(randomFaker.city)
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setGender(gender)
+                .setUserNumber(phoneNumber)
+                .setDateOfBirth(dayOfBirth, monthOfBirth , yearOfBirth)
+                .setSubject(subject)
+                .setHobbie(hobbies)
+                .uploadPicture(picture)
+                .setCurrentAddress(address)
+                .setState(state)
+                .setCity(city)
                 .clickSubmit();
 
-        resultRegistrationFormComponent.checkResult("Student Name", randomFaker.firstName + " " + randomFaker.lastName)
-                .checkResult("Student Email", randomFaker.userEmail)
-                .checkResult("Gender", randomFaker.userGender)
-                .checkResult("Mobile", randomFaker.userNumber)
-                .checkResult("Date of Birth", randomFaker.userDayOfBirth + " " + randomFaker.monthOfBirth +  "," + randomFaker.userYearOfBirth)
-                .checkResult("Subjects", randomFaker.userSubject)
-                .checkResult("Hobbies", randomFaker.userHobbies)
-                .checkResult("Picture", randomFaker.userPicture)
-                .checkResult("Address", randomFaker.streetAddress)
-                .checkResult("State and City", randomFaker.state + " " + randomFaker.city);
+        resultRegistrationFormComponent.checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", email)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", phoneNumber)
+                .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth +  "," + yearOfBirth)
+                .checkResult("Subjects", subject)
+                .checkResult("Hobbies", hobbies)
+                .checkResult("Picture", picture)
+                .checkResult("Address", address)
+                .checkResult("State and City", state + " " + city);
 
     }
 

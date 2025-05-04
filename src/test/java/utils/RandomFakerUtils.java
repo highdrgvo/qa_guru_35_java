@@ -6,23 +6,26 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomFakerUtils {
 
-    static Faker faker = new Faker(new Locale("en-GB"));
+    private static final Faker faker = new Faker(new Locale("en-GB"));
 
-    public String firstName = faker.name().firstName(), // Emory
-            lastName = faker.name().lastName(), // Barton
-            userEmail = faker.internet().emailAddress(),
-            userGender = getRandomGender(),
-            userNumber = getRandomPhone(),
-            monthOfBirth = getRandomMonthOfBirth(),
-            userDayOfBirth = getRandomDayOfBirth(),
-            userYearOfBirth = getRandomYearOfBirth(),
-            userSubject = getRandomSubject(),
-            userHobbies = getRandomHobbies(),
-            userPicture = getRandomPicture(),
-            streetAddress = faker.address().streetAddress(),
-            state = getRandomState(),
-            city = getRandomCity(state);
 
+    // Рандомное имя
+
+    public static String getRandomFirstName(){
+        return faker.name().firstName();
+    };
+
+    // Рандомная фамилия
+
+    public static String getRandomLastName(){
+        return faker.name().lastName();
+    };
+
+    // Рандомный email
+
+    public static String getRandomEmail(){
+        return faker.internet().emailAddress();
+    };
 
     // Рандомный пол
 
@@ -31,17 +34,7 @@ public class RandomFakerUtils {
     }
 
     public static String getRandomGender() {
-
-        String[] genders = {"Male", "Female", "Other"};
-
-        return getRandomItemFromArray(genders);
-    }
-
-    public static String getRandomItemFromArray(String[] array) {
-
-        int index = getRandomInt(0, array.length - 1);
-
-        return array[index];
+        return faker.options().option("Male", "Female", "Other");
     }
 
     // Рандомный телефон
@@ -52,46 +45,47 @@ public class RandomFakerUtils {
                 getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
     }
 
-    // Рандомный день
+    // Рандомный день рождения
 
     public static String getRandomDayOfBirth() {
         int dayOfBirth = faker.number().numberBetween(1, 28);
         return String.format("%02d", dayOfBirth);
     }
 
-    // Рандомный месяц
+    // Рандомный месяц рождения
 
     public static String getRandomMonthOfBirth() {
-        String[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        return getRandomItemFromArray(month);
+        return faker.options().option("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
     }
 
-    // Рандомный год
+    // Рандомный год рождения
 
     public static String getRandomYearOfBirth() {
-        int yearOfBirth = (faker.number().numberBetween(1990, 2010));
-        return String.valueOf(yearOfBirth);
+        return String.valueOf(faker.number().numberBetween(1990, 2010));
     }
 
     // Рандомный предмет
 
     public static String getRandomSubject() {
-        String[] subject = {"English", "Hindi", "Maths", "Arts", "Accounting", "Commerce", "Economics", "Computer Science", "History", "Civics"};
-        return getRandomItemFromArray(subject);
+        return faker.options().option("English", "Hindi", "Maths", "Arts", "Accounting", "Commerce", "Economics", "Computer Science", "History", "Civics");
     }
 
     // Рандомное хобби
 
     public static String getRandomHobbies() {
-        String[] hobbies = {"Sports", "Reading", "Music"};
-        return getRandomItemFromArray(hobbies);
+        return faker.options().option("Sports", "Reading", "Music");
     }
 
     // Рандомная картинка
 
     public static String getRandomPicture() {
-        String[] picture = {"priroda_kartinki_foto_03.jpg", "1119-white-flower-2_1579261223.jpg"};
-        return getRandomItemFromArray(picture);
+        return faker.options().option("priroda_kartinki_foto_03.jpg", "1119-white-flower-2_1579261223.jpg");
+    }
+
+    // Рандомный адрес
+
+    public static String getRandomAddress() {
+        return faker.address().streetAddress();
     }
 
     // Рандомный штат
