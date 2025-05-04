@@ -107,6 +107,20 @@ public class RandomFakerUtils {
                     "Неизвестное значение state: " + state);
         };
     }
+
+    // Строка с числом 10 для теста minimumNumberOfDataIntheFieldTest
+
+    public static String getNumber10() {
+        return String.valueOf(faker.number().numberBetween(10, 10));
+    }
+
+    // Генерация телефонного номера в котором > 10 цифр
+
+    public static String getInvalidNumber() {
+
+        return String.format("%s%s%s%s%s", getRandomInt(111, 999),
+                getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99), getRandomInt(1111, 9999));
+    }
 }
 
 

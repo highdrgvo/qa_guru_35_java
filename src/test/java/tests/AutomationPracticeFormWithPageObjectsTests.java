@@ -3,7 +3,6 @@ package tests;
 import org.junit.jupiter.api.*;
 import pages.RegistrationPage;
 import pages.components.ResultRegistrationFormComponent;
-import utils.RandomFakerUtils;
 
 import static utils.RandomFakerUtils.*;
 
@@ -22,7 +21,10 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
             picture = getRandomPicture(),
             address = getRandomAddress(),
             state = getRandomState(),
-            city = getRandomCity(state);
+            city = getRandomCity(state),
+
+            number10ForTestMinimumNumberOfDataIntheField = getNumber10(),
+            invalidNumberForNegativeTest = getInvalidNumber();
 
 
     RegistrationPage registrationPage = new RegistrationPage();
@@ -70,7 +72,7 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
         // Проверка минимального кол-ва символов в поле Mobile
 
         registrationPage.openPage()
-                .checkMinDigitsFieldMobile("10");
+                .checkMinDigitsFieldMobile(number10ForTestMinimumNumberOfDataIntheField);
     }
 
     @Test
@@ -79,7 +81,7 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
         // Негативная проверка. Ввод более 10 цифр в поле Mobile
 
         registrationPage.openPage()
-                .setMoreThan10DigitsMobilePhone("99955544433222");
+                .setMoreThan10DigitsMobilePhone(invalidNumberForNegativeTest);
     }
 
 }
