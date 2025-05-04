@@ -7,8 +7,6 @@ import pages.RegistrationPage;
 import pages.components.ResultRegistrationFormComponent;
 import utils.RandomFakerUtils;
 
-import static com.codeborne.selenide.Selenide.sleep;
-
 public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
     private static final Logger log = LoggerFactory.getLogger(AutomationPracticeFormWithPageObjectsTests.class);
@@ -33,25 +31,21 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
                 .setHobbie(randomFaker.userHobbies)
                 .uploadPicture(randomFaker.userPicture)
                 .setCurrentAddress(randomFaker.streetAddress)
-                .setState("Rajasthan")
-                .setCity("Jaipur")
+                .setState(randomFaker.state)
+                .setCity(randomFaker.city)
                 .clickSubmit();
 
-        sleep(5000);
+        resultRegistrationFormComponent.checkResult("Student Name", randomFaker.firstName + " " + randomFaker.lastName)
+                .checkResult("Student Email", randomFaker.userEmail)
+                .checkResult("Gender", randomFaker.userGender)
+                .checkResult("Mobile", randomFaker.userNumber)
+                .checkResult("Date of Birth", randomFaker.userDayOfBirth + " " + randomFaker.monthOfBirth +  "," + randomFaker.userYearOfBirth)
+                .checkResult("Subjects", randomFaker.userSubject)
+                .checkResult("Hobbies", randomFaker.userHobbies)
+                .checkResult("Picture", randomFaker.userPicture)
+                .checkResult("Address", randomFaker.streetAddress)
+                .checkResult("State and City", randomFaker.state + " " + randomFaker.city);
 
-
-        resultRegistrationFormComponent.checkResult("Student Name", "Serg Plechko")
-                .checkResult("Student Email", "serg@plechko.com")
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", "5550009995")
-                .checkResult("Date of Birth", "30 June,2004")
-                .checkResult("Subjects", "Chemistry")
-                .checkResult("Hobbies", "Sports")
-                .checkResult("Picture", "priroda_kartinki_foto_03.jpg")
-                .checkResult("Address", "ul. New Delhi 4")
-                .checkResult("State and City", "Rajasthan Jaipur");
-
-        sleep(5000);
     }
 
     @Test

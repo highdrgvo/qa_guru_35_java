@@ -1,31 +1,27 @@
 package utils;
 
 import com.github.javafaker.Faker;
-import com.github.javafaker.PhoneNumber;
-
-import javax.print.DocFlavor;
-import java.time.Month;
-import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 
 public class RandomFakerUtils {
 
     static Faker faker = new Faker(new Locale("en-GB"));
 
     public String firstName = faker.name().firstName(), // Emory
-                    lastName = faker.name().lastName(), // Barton
-                    userEmail = faker.internet().emailAddress(),
-                    userGender = getRandomGender(),
-                    userNumber =  getRandomPhone(),
-                    monthOfBirth = getRandomMonthOfBirth(),
-                    userDayOfBirth = getRandomDayOfBirth(),
-                    userYearOfBirth = getRandomYearOfBirth(),
-                    userSubject = getRandomSubject(),
-                    userHobbies = getRandomHobbies(),
-                    userPicture = getRandomPicture(),
-                    streetAddress = faker.address().streetAddress();
+            lastName = faker.name().lastName(), // Barton
+            userEmail = faker.internet().emailAddress(),
+            userGender = getRandomGender(),
+            userNumber = getRandomPhone(),
+            monthOfBirth = getRandomMonthOfBirth(),
+            userDayOfBirth = getRandomDayOfBirth(),
+            userYearOfBirth = getRandomYearOfBirth(),
+            userSubject = getRandomSubject(),
+            userHobbies = getRandomHobbies(),
+            userPicture = getRandomPicture(),
+            streetAddress = faker.address().streetAddress(),
+            state = getRandomState(),
+            city = getRandomCity(state);
 
 
     // Рандомный пол
@@ -38,7 +34,7 @@ public class RandomFakerUtils {
 
         String[] genders = {"Male", "Female", "Other"};
 
-        return  getRandomItemFromArray(genders);
+        return getRandomItemFromArray(genders);
     }
 
     public static String getRandomItemFromArray(String[] array) {
@@ -49,68 +45,74 @@ public class RandomFakerUtils {
     }
 
     // Рандомный телефон
+
     public static String getRandomPhone() {
 
-        return String.format("%s %s %s %s", getRandomInt(111, 999),
+        return String.format("%s%s%s%s", getRandomInt(111, 999),
                 getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
-        // %s это getRandomInt(111, 999), (%s) getRandomInt(111, 999) и т д
     }
 
     // Рандомный день
 
     public static String getRandomDayOfBirth() {
-
         int dayOfBirth = faker.number().numberBetween(1, 28);
-
         return String.format("%02d", dayOfBirth);
     }
 
     // Рандомный месяц
 
     public static String getRandomMonthOfBirth() {
-
         String[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-
-        return  getRandomItemFromArray(month);
+        return getRandomItemFromArray(month);
     }
 
     // Рандомный год
 
     public static String getRandomYearOfBirth() {
-
         int yearOfBirth = (faker.number().numberBetween(1990, 2010));
-
         return String.valueOf(yearOfBirth);
     }
 
     // Рандомный предмет
 
     public static String getRandomSubject() {
-
         String[] subject = {"English", "Hindi", "Maths", "Arts", "Accounting", "Commerce", "Economics", "Computer Science", "History", "Civics"};
-
-        return  getRandomItemFromArray(subject);
+        return getRandomItemFromArray(subject);
     }
 
     // Рандомное хобби
 
     public static String getRandomHobbies() {
-
         String[] hobbies = {"Sports", "Reading", "Music"};
-
-        return  getRandomItemFromArray(hobbies);
+        return getRandomItemFromArray(hobbies);
     }
 
     // Рандомная картинка
 
     public static String getRandomPicture() {
-
         String[] picture = {"priroda_kartinki_foto_03.jpg", "1119-white-flower-2_1579261223.jpg"};
-
-        return  getRandomItemFromArray(picture);
+        return getRandomItemFromArray(picture);
     }
 
+    // Рандомный штат
 
+    public static String getRandomState() {
+        return faker.options().option(
+                "NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
+    }
+
+    // Рандомный город
+
+    public static String getRandomCity(String state) {
+        return switch (state) {
+            case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
+            case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
+            case "Haryana" -> faker.options().option("Karnal", "Panipat");
+            case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
+            default -> throw new IllegalArgumentException(
+                    "Неизвестное значение state: " + state);
+        };
+    }
 }
 
 
