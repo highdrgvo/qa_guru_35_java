@@ -27,12 +27,6 @@ public class RandomFakerUtils {
         return faker.internet().emailAddress();
     };
 
-    // Рандомный пол
-
-    public static int getRandomInt(int min, int max) {
-        return ThreadLocalRandom.current().nextInt(min, max + 1);
-    }
-
     public static String getRandomGender() {
         return faker.options().option("Male", "Female", "Other");
     }
@@ -40,9 +34,7 @@ public class RandomFakerUtils {
     // Рандомный телефон
 
     public static String getRandomPhone() {
-
-        return String.format("%s%s%s%s", getRandomInt(111, 999),
-                getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
+        return faker.numerify("##########");
     }
 
     // Рандомный день рождения
@@ -117,9 +109,7 @@ public class RandomFakerUtils {
     // Генерация телефонного номера в котором > 10 цифр
 
     public static String getInvalidNumber() {
-
-        return String.format("%s%s%s%s%s", getRandomInt(111, 999),
-                getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99), getRandomInt(1111, 9999));
+        return faker.numerify("#############");
     }
 }
 

@@ -1,5 +1,7 @@
 package ru.serple;
 
+import java.util.List;
+
 public class Human {
 
     private final String name;
@@ -10,6 +12,14 @@ public class Human {
         this.name = name;
         this.age = age;
         this.isCute = isCute;
+    }
+
+    static void sayHello() {
+        System.out.println("Hello!!!!");
+    }
+
+    void  sayHelloNonStatic() {
+        System.out.println("Hello!!!!");
     }
 
     public Human incrementAge() {
@@ -27,6 +37,12 @@ public class Human {
 
     public int getAge() {
         return age;
+    }
+
+    void printSomeValue(int i, String str, List<String> list) {
+
+        i = 100;
+        System.out.println("int: " + i + ", string: " + str.toUpperCase() + ", list: " + list);
     }
 
 
