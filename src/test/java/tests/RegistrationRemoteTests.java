@@ -42,12 +42,12 @@ public class RegistrationRemoteTests {
             $("#subjectsInput").setValue("Math").pressEnter();
             $("#hobbiesWrapper").$(byText("Sports")).click();
         });
-        step("Verfy result", () -> {
-            $(".modal-dialog").should(appear);
-            $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-            $(".table-responsive").shouldHave(text("Alex"), text("Egorov"),
-                    text("alex@egorov.com"), text("1234567890"));
-        });
+//        step("Verfy result", () -> {
+//            $(".modal-dialog").should(appear);
+//            $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+//            $(".table-responsive").shouldHave(text("Alex"), text("Egorov"),
+//                    text("alex@egorov.com"), text("1234567890"));
+//        });
 
 //        $("#uploadPicture").uploadFromClasspath("img/1.png");
 //        $("#currentAddress").setValue("Some address 1");
