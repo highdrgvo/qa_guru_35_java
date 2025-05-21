@@ -1,10 +1,12 @@
 package tests.simple;
 
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@Tags({@Tag("simple"), @Tag("critical")})
 @Tag("simple")
 public class NegativeTests {
 

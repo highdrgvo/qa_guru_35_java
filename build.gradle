@@ -29,9 +29,13 @@ repositories {
 dependencies {
 
     testImplementation (
-            "org.junit.jupiter:junit-jupiter:5.11.4", // библиотека jUnit
-            "com.codeborne:selenide:7.7.1",
-            "com.github.javafaker:javafaker:1.0.2"
+            'org.junit.jupiter:junit-jupiter:5.11.4', // библиотека jUnit
+            'com.codeborne:selenide:7.7.1',
+            'com.github.javafaker:javafaker:1.0.2',
+            'io.qameta.allure:allure-junit5:2.19.0',
+            'io.qameta.allure:allure-selenide:2.29.1',
+            'org.aspectj:aspectjweaver:1.9.24'
+
     )
 }
 
@@ -53,5 +57,11 @@ tasks.withType(Test) {
 task simple_test(type: Test) {
     useJUnitPlatform {
         includeTags("simple")
+    }
+}
+
+task demoqa_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("demoqa")
     }
 }
