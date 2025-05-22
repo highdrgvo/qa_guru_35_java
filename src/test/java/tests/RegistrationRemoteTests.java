@@ -31,6 +31,8 @@ public class RegistrationRemoteTests {
     @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot"); // мы взяли метод screenshot и таким образом его вызываем
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
 
     }
 
