@@ -1,6 +1,9 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -18,7 +21,8 @@ public class RegistrationRemoteTests {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub"; // подключили удаленную ферму.
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub"; // подключили удаленную ферму, чтобы локально не юзать браузер (жрет дохрена ресурсов)
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()); // Добавили логгер, который будет логировать все селенидовские шаги
     }
 
     @Test
