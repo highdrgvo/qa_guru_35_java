@@ -9,6 +9,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Map;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
@@ -24,6 +27,14 @@ public class RegistrationRemoteTests {
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub"; // подключили удаленную ферму, чтобы локально не юзать браузер (жрет дохрена ресурсов)
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
+
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()); // Добавили логгер, который будет логировать все селенидовские шаги
     }
 
@@ -33,6 +44,7 @@ public class RegistrationRemoteTests {
         Attach.screenshotAs("Last screenshot"); // мы взяли метод screenshot и таким образом его вызываем
         Attach.pageSource();
         Attach.browserConsoleLogs();
+        Attach.addVideo();
 
     }
 
