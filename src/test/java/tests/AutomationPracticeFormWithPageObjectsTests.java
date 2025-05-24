@@ -33,6 +33,7 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
 
     @Test
+    @Tag("homework_test")
     void successfulRegistrationTest() {
 
         // Проверка успешности заполнения регистрационной формы студента
@@ -67,6 +68,7 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
     }
 
     @Test
+    @Tag("homework_test")
     void minimumNumberOfDataIntheFieldTest() {
 
         // Проверка минимального кол-ва символов в поле Mobile
@@ -76,6 +78,7 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
     }
 
     @Test
+    @Tag("homework_test")
     void inputElevenDigitsInMobileField() {
 
         // Негативная проверка. Ввод более 10 цифр в поле Mobile
