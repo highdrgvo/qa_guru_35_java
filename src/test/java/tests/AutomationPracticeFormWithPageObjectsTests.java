@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import pages.RegistrationPage;
 import pages.components.ResultRegistrationFormComponent;
 
+import static io.qameta.allure.Allure.step;
 import static utils.RandomFakerUtils.*;
 
 public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
@@ -34,57 +35,63 @@ public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
     @Test
     @Tag("homework_test")
+    @DisplayName("User registration")
     void successfulRegistrationTest() {
 
-        // Проверка успешности заполнения регистрационной формы студента
+        step("Fill in all fields by valid data", () -> {
+            registrationPage.openPage()
+                    .removeBanner()
+                    .setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setEmail(email)
+                    .setGender(gender)
+                    .setUserNumber(phoneNumber)
+                    .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
+                    .setSubject(subject)
+                    .setHobbie(hobbies)
+                    .uploadPicture(picture)
+                    .setCurrentAddress(address)
+                    .setState(state)
+                    .setCity(city);
+        });
 
-        registrationPage.openPage()
-                .removeBanner()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setGender(gender)
-                .setUserNumber(phoneNumber)
-                .setDateOfBirth(dayOfBirth, monthOfBirth , yearOfBirth)
-                .setSubject(subject)
-                .setHobbie(hobbies)
-                .uploadPicture(picture)
-                .setCurrentAddress(address)
-                .setState(state)
-                .setCity(city)
-                .clickSubmit();
+        step("Click Submit", () -> {
+            registrationPage.clickSubmit();
+        });
 
-        resultRegistrationFormComponent.checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Student Email", email)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", phoneNumber)
-                .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth +  "," + yearOfBirth)
-                .checkResult("Subjects", subject)
-                .checkResult("Hobbies", hobbies)
-                .checkResult("Picture", picture)
-                .checkResult("Address", address)
-                .checkResult("State and City", state + " " + city);
-
+        step("Expected result: Adding data corresponds to the data in final registration form", () -> {
+            resultRegistrationFormComponent.checkResult("Student Name", firstName + " " + lastName)
+                    .checkResult("Student Email", email)
+                    .checkResult("Gender", gender)
+                    .checkResult("Mobile", phoneNumber)
+                    .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                    .checkResult("Subjects", subject)
+                    .checkResult("Hobbies", hobbies)
+                    .checkResult("Picture", picture)
+                    .checkResult("Address", address)
+                    .checkResult("State and City", state + " " + city);
+        });
     }
 
     @Test
     @Tag("homework_test")
+    @DisplayName("Checking minimum total of symbols in the Mobile field")
     void minimumNumberOfDataIntheFieldTest() {
 
-        // Проверка минимального кол-ва символов в поле Mobile
-
-        registrationPage.openPage()
-                .checkMinDigitsFieldMobile(number10ForTestMinimumNumberOfDataIntheField);
+        step("Expected result: minimum quantity of the symbols in the Mobile field is equal 10", () -> {
+            registrationPage.openPage()
+                    .checkMinDigitsFieldMobile(number10ForTestMinimumNumberOfDataIntheField);
+        });
     }
 
     @Test
     @Tag("homework_test")
+    @DisplayName("Input more than 10 digits in the Mobile field")
     void inputElevenDigitsInMobileField() {
 
-        // Негативная проверка. Ввод более 10 цифр в поле Mobile
-
-        registrationPage.openPage()
-                .setMoreThan10DigitsMobilePhone(invalidNumberForNegativeTest);
+        step("Expected result: It's impossible to input more than 10 digits in the Mobile field", () -> {
+            registrationPage.openPage()
+                    .setMoreThan10DigitsMobilePhone(invalidNumberForNegativeTest);
+        });
     }
-
 }
