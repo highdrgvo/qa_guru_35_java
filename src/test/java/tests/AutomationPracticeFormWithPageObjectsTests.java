@@ -7,6 +7,7 @@ import pages.components.ResultRegistrationFormComponent;
 import static io.qameta.allure.Allure.step;
 import static utils.RandomFakerUtils.*;
 
+@DisplayName("Testing registration form")
 public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
     String firstName = getRandomFirstName(),
