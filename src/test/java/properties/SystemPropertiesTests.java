@@ -1,4 +1,4 @@
-package properties.tests;
+package properties;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -12,6 +12,7 @@ public class SystemPropertiesTests {
     }
 
     @Test
+    @Tag("jenkinsProperties")
     void systemProperties1Test() {
         System.setProperty("browser", "chrome");
         String browser = System.getProperty("browser");
