@@ -5,10 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
@@ -49,7 +46,7 @@ public class RegistrationRemoteTests {
     }
 
     @Test
-    @Tag("demoqa")
+    @Tags({@Tag("demoqa"), @Tag("simple")})
     void successfulRegistrationTest() {
         step("Open form", () -> {
             open("/automation-practice-form");
