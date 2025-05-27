@@ -12,7 +12,7 @@ public class SystemPropertiesTests {
     }
 
     @Test
-    @Tag("remoteTest")
+    @Tag("simple")
     void systemProperties1Test() {
         System.setProperty("browser", "chrome");
         String browser = System.getProperty("browser");
