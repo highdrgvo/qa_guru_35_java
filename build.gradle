@@ -45,6 +45,7 @@ dependencies {
 
 tasks.withType(Test) {
     useJUnitPlatform()
+    systemProperties(System.getProperties()) // Вот эта строчка необходима для работы. Эта строчка помогает нам считывать переменные (-Dbrowser=chrome)
 
     testLogging {
         lifecycle {
