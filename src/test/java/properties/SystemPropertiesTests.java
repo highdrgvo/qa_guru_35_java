@@ -3,6 +3,8 @@ package properties;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.String.format;
+
 public class SystemPropertiesTests {
 
     @Test
@@ -42,5 +44,17 @@ public class SystemPropertiesTests {
         System.out.println(browser);
 
 //        gradle jenkins_properties -Dbrowser=chrome
+    }
+
+    @Test
+    @Tag("hello")
+    void systemProperties5Test() {
+        String name = System.getProperty("name", "default student");
+        String message = format("Hello, %s!", name);
+
+        System.out.println(message);
+
+        // gradle hello_test -Dname="Loh Cvetochnii"
+
     }
 }
