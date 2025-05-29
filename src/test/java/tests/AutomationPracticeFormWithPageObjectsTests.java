@@ -6,6 +6,7 @@ import pages.components.ResultRegistrationFormComponent;
 
 import static utils.RandomFakerUtils.*;
 
+@Tag("jenkinsParametersHomeWorkTest")
 public class AutomationPracticeFormWithPageObjectsTests extends TestBase {
 
     String firstName = getRandomFirstName(),
