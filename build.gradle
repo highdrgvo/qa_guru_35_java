@@ -90,4 +90,5 @@ task jenkins_parameters_hw(type: Test) {
     useJUnitPlatform {
         includeTags("jenkinsParametersHomeWorkTest")
     }
+    systemProperty "selenoid.url", System.getProperty("selenoid.url", "https://localhost:4444/wd/hub")
 }
