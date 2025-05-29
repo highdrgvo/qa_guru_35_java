@@ -59,13 +59,4 @@ public class SystemPropertiesTests {
         // gradle hello_test -Dname="Loh Cvetochnii"
 
     }
-
-    @Test
-    @Tag("jenkinsParametersHomeWorkTest")
-    void systemPropertiesUrlRemoteBrowserTest() {
-
-        String urlRemoteBrowser = System.getProperty(Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub");
-        System.out.println(urlRemoteBrowser);
-
-    }
 }
