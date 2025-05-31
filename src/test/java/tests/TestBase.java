@@ -16,7 +16,7 @@ public class TestBase {
     @BeforeAll
     static void setUp() {
 
-        String selenoidHost = System.getProperty("selenoid_host", "selenoid.autotests.cloud");
+        String selenoidHost = System.getProperty("selenoid_url", "selenoid.autotests.cloud");
         String selenoidLogin = System.getProperty("selenoid_login", "user1");
         String selenoidPassword = System.getProperty("selenoid_password", "1234");
         String browser = System.getProperty("browser", "chrome");
