@@ -6,46 +6,42 @@ plugins {
 group = 'ru.serple'
 version = '1.0-SNAPSHOT'
 
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.21.0",
+    selenideVersion = "7.7.3"
+
 
 allure {
     report {
-        version.set('2.30.0') // Версия Allure Report . Подсветка .set() Если IDE подсвечивает .set() серым, это означает, что можно использовать более краткую форму. Но оба варианта (.set() и прямое присваивание) рабочие.
+        version.set(allureVersion)
     }
-    adapter { // Отвечает за появление папки allure-results в build слева.
-        aspectjWeaver.set(true); // Включение AspectJ для @Step, @Attachment
+    adapter {
+        aspectjWeaver.set(true)
         frameworks {
             junit5 {
-                adapterVersion.set("2.19.0") // Должно совпадать с allure-junit5
+                adapterVersion.set(allureVersion)
             }
         }
     }
 }
 
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
 
     testImplementation (
-            'org.junit.jupiter:junit-jupiter:5.11.4', // библиотека jUnit
-            'com.codeborne:selenide:7.7.1',
+            "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "org.junit.jupiter:junit-jupiter:5.10.0",
+            'org.slf4j:slf4j-simple:2.0.7',
             'com.github.javafaker:javafaker:1.0.2',
-            'io.qameta.allure:allure-junit5:2.19.0',
-            'io.qameta.allure:allure-selenide:2.29.1',
-            'org.aspectj:aspectjweaver:1.9.24'
-
+            'io.github.bonigarcia:webdrivermanager:5.8.0'
     )
 }
 
-//test {
-//    useJUnitPlatform()
-//}
-
 tasks.withType(Test) {
     useJUnitPlatform()
-    systemProperties(System.getProperties()) // Вот эта строчка необходима для работы. Эта строчка помогает нам считывать переменные (-Dbrowser=chrome)
 
     testLogging {
         lifecycle {
@@ -56,40 +52,8 @@ tasks.withType(Test) {
 }
 
 
-task jenkins_properties(type: Test) {
-    useJUnitPlatform {
-        includeTags("jenkinsProperties")
-    }
-}
-
-task simple_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("simple")
-    }
-}
-
-task demoqa_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("demoqa")
-    }
-}
-
-task remote_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("remoteTest")
-    }
-}
-
-task hello_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("hello")
-    }
-}
-
 task jenkins_parameters_hw(type: Test) {
     useJUnitPlatform {
         includeTags("jenkinsParametersHomeWorkTest")
     }
-    systemProperty "selenoid.url", System.getProperty("selenoid.url", "https://localhost:4444/wd/hub")
-
 }
